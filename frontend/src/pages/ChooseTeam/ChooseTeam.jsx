@@ -1,14 +1,14 @@
 import "./ChooseTeam.css"
 import { useNavigate } from "react-router-dom";
 import { ModelInfo } from "../../components/modelInfo/ModelInfo.jsx"; // Import the component
-export const ChooseTeam = ({teams=[]}) => {
+export const ChooseTeam = ({teams=null, error=false}) => {
     const navigate = useNavigate()
     return (
 
         <div className="choose-team-container">
 
             <h1 className="title">Choose Your Favorite Team</h1>
-            {   teams.length> 0 ? (
+            {   teams?.length> 0 ? (
                 <div className="card-container">
                     {teams.map((team) => (
                         <div key={team.id} className="team-card" onClick={()=> navigate(`/teams/${team.team_name}`)}>
@@ -18,7 +18,9 @@ export const ChooseTeam = ({teams=[]}) => {
 
                     ))}</div>)
                     :(
-                    <p className="no-teams-message">No teams available.</p> )
+                    <p className="no-teams-message">
+                        {teams === null ? "Loading teams…" : error ? "Couldn’t load the teams." : "No teams available."}
+                    </p> )
                     }
 
         <ModelInfo></ModelInfo>

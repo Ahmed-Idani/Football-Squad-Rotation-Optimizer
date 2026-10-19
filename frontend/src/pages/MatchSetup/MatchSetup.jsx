@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import "../../styles/street.css";
-import { apiUrl } from "../../lib/api.js";
+import { apiFetch } from "../../lib/api.js";
 
 const MAX_MATCHES = 38;
 
@@ -116,8 +116,8 @@ export const MatchSetup = () => {
     };
 
     try {
-      const response = await fetch(
-        apiUrl(`api/optimise/${encodeURIComponent(team_name)}/`),
+      const response = await apiFetch(
+        `api/optimise/${encodeURIComponent(team_name)}/`,
         {
           method: "POST",
           headers: { "Content-type": "application/json" },

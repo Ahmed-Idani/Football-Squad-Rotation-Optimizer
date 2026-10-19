@@ -2,7 +2,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./TeamPage.css";
 import { Player } from "../../components/player/Player.jsx";
-import { apiUrl } from "../../lib/api.js";
+import { apiFetch } from "../../lib/api.js";
 
 export const TeamPage = () => {
   const { team_name } = useParams();
@@ -18,8 +18,8 @@ export const TeamPage = () => {
     const fetchPlayers = async () => {
       setStatus("loading");
       try {
-        const response = await fetch(
-          apiUrl(`api/teams/${encodeURIComponent(team_name)}/players/`),
+        const response = await apiFetch(
+          `api/teams/${encodeURIComponent(team_name)}/players/`,
         );
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
 

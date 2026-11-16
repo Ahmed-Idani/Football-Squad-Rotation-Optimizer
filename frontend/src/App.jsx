@@ -8,6 +8,7 @@ import {TeamPage} from "./pages/TeamPage/TeamPage.jsx";
 import { Results } from "./pages/Results/Results.jsx";
 import { BoomBox } from "./components/boombox/BoomBox.jsx";
 import { BackendStatus } from "./components/backendStatus/BackendStatus.jsx";
+import { GitHubLink } from "./components/githubLink/GitHubLink.jsx";
 function App() {
     // null until the first answer, so the home page can tell "still loading"
     // apart from "no teams". Also the request that wakes a sleeping API.
@@ -36,7 +37,11 @@ function App() {
             <Route path="/results/:team_name" element={<Results />} />
           </Routes>
           <BackendStatus />
-          <BoomBox />
+          {/* Bottom left: bottom right is taken by Netlify's free-tier badge. */}
+          <div className="corner-dock">
+            <BoomBox />
+            <GitHubLink />
+          </div>
         </BrowserRouter>
     )
 }
